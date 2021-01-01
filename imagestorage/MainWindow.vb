@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports MySql.Data.MySqlClient
 
-Public Class Form1
+Public Class MainWindow
 
     Private Sub RefreshFiles()
         ListBox1.Items.Clear()
@@ -35,7 +35,6 @@ Public Class Form1
     End Sub
 
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
-        ListBox1.Items.Add(OpenFileDialog1.FileName)
 
         Dim fs As IO.Stream = OpenFileDialog1.OpenFile()
         Dim br As New IO.BinaryReader(fs)
@@ -50,7 +49,7 @@ Public Class Form1
             cmd.Parameters.AddWithValue("@Data", base64String)
             cmd.ExecuteNonQuery()
         Catch ex As MySqlException
-
+            MessageBox.Show("Error! Perhaps the file is too large or the server is unavailable? " + vbCrLf + vbCrLf + vbCrLf + "Heres a stack trace of the error:" + vbCrLf + ex.ToString())
         Finally
             '   Globals.conn.Close()
         End Try
@@ -60,13 +59,17 @@ Public Class Form1
     End Sub
 
     Private Sub OpenImage()
-        Globals.currentTitle = ListBox1.SelectedItem.ToString.Split("-").ElementAt(1)
-        Globals.currentViewing = Integer.Parse(ListBox1.SelectedItem.ToString.Split("-").ElementAt(0))
-        Dim ViewForm As View
-        ViewForm = New View()
-        ViewForm.ShowDialog()
+        If ListBox1.SelectedIndex > 0 Then
 
-        ViewForm = Nothing
+            Globals.currentTitle = ListBox1.SelectedItem.ToString.Split("-").ElementAt(1)
+            Globals.currentViewing = Integer.Parse(ListBox1.SelectedItem.ToString.Split("-").ElementAt(0))
+            Dim ViewForm As View
+            ViewForm = New View()
+            ViewForm.ShowDialog()
+
+            ViewForm = Nothing
+
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -75,5 +78,9 @@ Public Class Form1
 
     Private Sub ListBox1_DoubleClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
         OpenImage()
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs)
+
     End Sub
 End Class
