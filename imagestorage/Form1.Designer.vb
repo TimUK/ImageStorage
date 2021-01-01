@@ -40,11 +40,11 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(413, 12)
+        Me.Button1.Location = New System.Drawing.Point(413, 43)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(75, 50)
         Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Upload"
+        Me.Button1.Text = "Upload New"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'OpenFileDialog1
@@ -53,7 +53,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(413, 41)
+        Me.Button2.Location = New System.Drawing.Point(413, 14)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 4
@@ -69,7 +69,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ListBox1)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Image Storage"
         Me.ResumeLayout(False)
 
     End Sub
